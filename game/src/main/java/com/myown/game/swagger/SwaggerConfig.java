@@ -18,8 +18,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 
     @Bean
     public Docket createRestApi(){
-        return new Docket(DocumentationType.SWAGGER_2).
-                select()
+        return new Docket(DocumentationType.SWAGGER_2).select()
                 .apis(RequestHandlerSelectors.basePackage("com.myown.game.controller"))
                 .paths(PathSelectors.any())
                 .build()

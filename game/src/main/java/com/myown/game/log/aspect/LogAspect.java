@@ -1,5 +1,7 @@
 package com.myown.game.log.aspect;
 
+import org.apache.commons.lang3.StringUtils;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -33,7 +35,7 @@ public class LogAspect {
     }
 
     @Before("logPointCut()")
-    public void before(ProceedingJoinPoint joinPoint){
+    public void before(JoinPoint joinPoint){
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = requestAttributes.getRequest();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
