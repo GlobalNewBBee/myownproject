@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
-@Configuration
+@Component
 @Aspect
 public class LogAspect {
 
@@ -24,7 +24,7 @@ public class LogAspect {
     public void logPointCut(){
     }
 
-    @Around("logPointCut()")
+    @Around(value = "logPointCut()")
     public void around(ProceedingJoinPoint joinPoint){
         System.out.println("------------------start---------------");
         try{
@@ -34,7 +34,7 @@ public class LogAspect {
         }
     }
 
-    @Before("logPointCut()")
+    @Before(value = "logPointCut()")
     public void before(JoinPoint joinPoint){
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = requestAttributes.getRequest();
