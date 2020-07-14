@@ -3,10 +3,7 @@ package com.myown.game.log.aspect;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -20,7 +17,8 @@ import java.util.Date;
 @Aspect
 public class LogAspect {
 
-    @Pointcut(value = "execution(public * com.myown.game.controller.*.*.*(..))")
+    @Pointcut(value = "execution(public * com.myown.game.controller.*.*(..))")
+    //@Pointcut(value = "@annotation(com.myown.game.constant.TestAnnotation)")
     public void logPointCut(){
     }
 
@@ -45,6 +43,12 @@ public class LogAspect {
         System.out.println("-     访问IP : " + getIpAdrress(request));
         System.out.println("-     访问方法 : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
         System.out.println("-     参数 : " + Arrays.toString(joinPoint.getArgs()));
+    }
+
+    @AfterReturning(value = "logPointCut()",returning = "response")
+    public void afterReturn(Object response){
+        System.out.println("返回值:"+response);
+        System.out.println("------------------end---------------");
     }
 
     private static String getIpAdrress(HttpServletRequest request) {
