@@ -1,7 +1,6 @@
 package com.myown.game.controller;
 
 import com.myown.game.constant.CommonResponse;
-import com.myown.game.constant.TestAnnotation;
 import com.myown.game.log.aspect.LogAspect;
 import com.myown.game.redis.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ public class RedisController {
     @Autowired
     private RedisService redisService;
 
-    //@TestAnnotation
     @RequestMapping(value = "/testLink",produces = {"application/json;charset = UTF-8"},method = RequestMethod.GET)
     @ResponseBody
     public CommonResponse testLink(@RequestParam String stringParam){
