@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myown.game.mapper.tableColumn.TableColumnMapper">
+
+
+	<resultMap type="com.myown.game.model.tableColumn.TableColumns" id="result">
+		<result column="COLUMN_NAME" property="columnName" jdbcType="VARCHAR"/>
+		<result column="COLUMN_TYPE" property="columnType" jdbcType="VARCHAR"/>
+		<result column="DATA_TYPE" property="dataType" jdbcType="VARCHAR"/>
+		<result column="CHARACTER_MAXIMUM_LENGTH" property="characterMaximumLength" jdbcType="VARCHAR"/>
+		<result column="IS_NULLABLE" property="isNullable" jdbcType="VARCHAR"/>
+		<result column="COLUMN_DEFAULT" property="columnDefault" jdbcType="VARCHAR"/>
+		<result column="COLUMN_COMMENT" property="columnComment" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<select id="getTableColumn" parameterType="com.myown.game.model.tableColumn.TableColumnDTO" resultType="com.myown.game.model.tableColumn.TableColumns">
+		SELECT
+		COLUMN_NAME columnName,
+		COLUMN_TYPE columnType,
+		DATA_TYPE dataType,
+		CHARACTER_MAXIMUM_LENGTH characterMaximumLength,
+		IS_NULLABLE isNullable,
+		COLUMN_DEFAULT columnDefault,
+		COLUMN_COMMENT columnComment
+		FROM
+		INFORMATION_SCHEMA.COLUMNS
+		WHERE
+		table_schema = #{dataSourceName}
+		AND table_name = #{tableName}
+	</select>
+	<select id="getAllTableColumn" resultMap="result">
+		SELECT
+		COLUMN_NAME
+		columnName,
+		COLUMN_TYPE columnType,
+		DATA_TYPE dataType,
+		CHARACTER_MAXIMUM_LENGTH characterMaximumLength,
+		IS_NULLABLE isNullable,
+		COLUMN_DEFAULT columnDefault,
+		COLUMN_COMMENT columnComment,
+		TABLE_NAME tableName
+		FROM
+		INFORMATION_SCHEMA.COLUMNS
+		WHERE
+		table_schema =
+		#{dataSourceName}
+	</select>
+
+	<select id="countField" parameterType="com.myown.game.model.tableColumn.TableColumnDTO" resultType="java.lang.Integer">
+		select count(*) from(
+			SELECT
+			COLUMN_NAME
+			FROM
+			INFORMATION_SCHEMA.COLUMNS
+			WHERE
+			table_schema = #{dataSourceName}
+			and table_name = #{tableName}
+		) a
+	</select>
+</mapper>

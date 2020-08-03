@@ -22,8 +22,8 @@ spring:
       test-on-borrow: false
       validation-query: select 'x'
     username: root
-    password: 123456
-    jdbc-url: jdbc:mysql://127.0.0.1:3306/redis_test
+    password: Mobile2018.
+    jdbc-url: jdbc:mysql://192.168.1.32:3306/wisdom_ordering_platform
   redis:
     database: 0
     host: 192.168.174.129
