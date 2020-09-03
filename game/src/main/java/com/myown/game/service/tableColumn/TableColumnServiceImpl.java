@@ -45,4 +45,35 @@ public class TableColumnServiceImpl implements TableColumnService{
             return response;
         }
     }
+
+    @Override
+    public CommonResponse getFieldNum(TableColumnDTO dto) {
+        CommonResponse response = new CommonResponse();
+        try{
+            if(dto !=null){
+                if(dto.getDataSourceName()==null || dto.getTableName()==null){
+                    response.fail("请传入数据库名称以及表名称！");
+                    return response;
+                }else{
+                    Integer fieldNum = tableColumnMapper.countField(dto);
+                    if(fieldNum!=null){
+                        System.out.println("当前表有"+fieldNum+"个字段");
+                        response.success("查询成功",fieldNum);
+                        return response;
+                    }else{
+                        response.fail("查询失败！");
+                        return response;
+                    }
+                }
+            }else{
+                response.fail("参数不能为空");
+                return response;
+            }
+
+        }catch(Exception ex){
+
+        }finally {
+            return response;
+        }
+    }
 }

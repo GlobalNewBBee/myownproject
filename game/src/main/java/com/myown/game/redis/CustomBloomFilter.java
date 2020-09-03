@@ -82,18 +82,18 @@ public class CustomBloomFilter {
 
     public static void main(String[] args) {
 
-        ThreadLocal threadLocal = new ThreadLocal(){
+        /*ThreadLocal threadLocal = new ThreadLocal(){
             @Override
             protected Object initialValue() {
                 return "笨猪";
             }
         };
         Object result = threadLocal.get();
-        System.out.println("result:"+result);
-        /*for(int i=0;i<10000;i++){
+        System.out.println("result:"+result);*/
+        for(int i=0;i<10000;i++){
             addKey(((Integer) i).toString());
         }
-        System.out.println((hasKey(((Integer) 9999).toString()))?"true":"false");*/
+        System.out.println((hasKey(((Integer) 9999).toString()))?"true":"false");
         /*AtomicInteger atomicInteger = new AtomicInteger();
         System.out.println(atomicInteger);*/
     }

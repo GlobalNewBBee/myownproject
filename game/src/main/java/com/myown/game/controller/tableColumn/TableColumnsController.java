@@ -25,4 +25,10 @@ public class TableColumnsController {
     public CommonResponse getWorkBook(@ApiParam(name="TableColumnDTO对象",value="传入json格式",required=true) @RequestBody TableColumnDTO dto){
         return tableColumnService.exportExcel(dto);
     }
+
+    @RequestMapping(value = "/getFieldNum",produces = {"application/json;charset=UTF-8"},method = RequestMethod.POST)
+    @ApiOperation(value = "计算字段个数",notes = "计算字段个数")
+    public CommonResponse getFieldNum(@ApiParam(name="TableColumnDTO对象",value="传入json格式",required=true) @RequestBody TableColumnDTO dto){
+        return tableColumnService.getFieldNum(dto);
+    }
 }

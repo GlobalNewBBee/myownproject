@@ -6,4 +6,6 @@ import com.myown.game.model.tableColumn.TableColumnDTO;
 public interface TableColumnService {
 
     CommonResponse exportExcel(TableColumnDTO dto);
+
+    CommonResponse getFieldNum(TableColumnDTO dto);
 }
